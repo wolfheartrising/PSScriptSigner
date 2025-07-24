@@ -6,6 +6,16 @@
 ## Overview
 This utility securely signs PowerShell `.ps1` scripts using a self-created code-signing certificate. It includes a guided GUI for setup, password protection, certificate creation, and bulk script signing with full audit logging.
 
+### 📌 Why I Built This
+
+In environments where PowerShell execution policies are restricted to only allow signed code (`AllSigned` or `RemoteSigned`), managing certificates and signing scripts can quickly become tedious or error-prone. I created this tool to address that — enabling developers and administrators to securely generate signing certificates, protect access with a password, and sign `.ps1` scripts with proper timestamping and audit logs.
+
+This utility simplifies everything from initial setup to managing certificate stores, making it easier to enforce script integrity without compromising usability.
+
+---
+
+*No compiled executable or pre-signed distribution is included in this version. You are encouraged to generate your own signing cert and configure the tool securely for your environment.*
+
 Ideal for administrators, developers, and compliance-focused workflows, it behaves like an install-free desktop app — no modules or dependencies needed.
 
 ## Features
