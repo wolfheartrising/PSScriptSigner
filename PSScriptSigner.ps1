@@ -334,9 +334,6 @@ if ($mode -eq "sign") {
         $input = Prompt-ForPassword
         $inputHash = ConvertTo-SHA256 $input
 
-        Write-Host "Entered hash: $inputHash"
-        Write-Host "Stored hash:  $($settings.PasswordHash)"
-
         if ($inputHash -eq $settings.PasswordHash) {
             $success = $true
             Log-Attempt -EnteredPassword $input -Outcome "Password accepted"
