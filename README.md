@@ -1,5 +1,5 @@
-# PowerShell Script Signer – Foresta  
-**Version:** 2.3.5  
+# PowerShell Script Signer
+**Version:** 3.0.1  
 **Author:** Foresta  
 **Build Time:** Automatically stamped by the script
 
@@ -57,6 +57,8 @@ Ideal for administrators, developers, and compliance-focused workflows, it behav
 
 | Version | Changes |
 |---------|---------|
+| 3.0.1   | Fixed elevation check syntax; improved password matching diagnostics; loop control logic clarified using `$exitMenu`; updated splash screen and GUI elements |
+| 3.0.0   | Major refactor with modular helpers, certificate installation target prompt, password hashing, encrypted settings vault, logging system, and signing summary dialog |
 | 2.3.5   | Fixed folder dialog default path issue. Stable release. |
 | 2.3.4   | Patched error output in signing loop to resolve parser bug |
 | 2.3.3   | Added 5-second splash screen and prompt focus reliability |
