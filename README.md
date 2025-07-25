@@ -1,85 +1,25 @@
-# PowerShell Script Signer
-**Version:** 3.0.1  
-**Author:** Foresta  
-**Build Time:** Automatically stamped by the script
+# PSScriptSigner
 
-## Overview
-This utility securely signs PowerShell `.ps1` scripts using a self-created code-signing certificate. It includes a guided GUI for setup, password protection, certificate creation, and bulk script signing with full audit logging.
+**Version:** 4.0.0  
+**Author:** Foresta Lupo  
+**Email:** forestathewolfie@gmail.com
 
-### 📌 Why I Built This
+## 🔐 Overview
+PSScriptSigner is a secure and flexible PowerShell utility for digitally signing scripts and executables. Ideal for administrative environments, deployment automation, and compliance workflows.
 
-In environments where PowerShell execution policies are restricted to only allow signed code (`AllSigned` or `RemoteSigned`), managing certificates and signing scripts can quickly become tedious or error-prone. I created this tool to address that — enabling developers and administrators to securely generate signing certificates, protect access with a password, and sign `.ps1` scripts with proper timestamping and audit logs.
+## ✨ Features
+- Encrypted configuration with AES, master key, or certificate binding
+- Dual credential reset modes: Cert thumbprint or remote master key hash
+- Remote hash validation via GitHub Gist (`reset-key.json`)
+- Recursive signing support for `.ps1`, `.psd1`, `.psm1`, and `.exe` files
+- Unified action logging to CSV for auditing
+- Optional masking for failed attempts to preserve security hygiene
 
-This utility simplifies everything from initial setup to managing certificate stores, making it easier to enforce script integrity without compromising usability.
+## 📦 Installation
 
----
+```powershell
+# Clone the repo
+git clone https://github.com/wolfheartrising/PSScriptSigner.git
 
-*No compiled executable or pre-signed distribution is included in this version. You are encouraged to generate your own signing cert and configure the tool securely for your environment.*
-
-Ideal for administrators, developers, and compliance-focused workflows, it behaves like an install-free desktop app — no modules or dependencies needed.
-
-## Features
-- 🔐 One-time setup with password protection and log folder selection  
-- 📜 Create code-signing certificates (.pfx and .cer) from a custom subject  
-- ⚙️ Install certificates to CurrentUser, LocalMachine, or both  
-- 🧠 Detects administrator privileges before system-level certificate install  
-- 🖋️ Authenticated multi-script signing with SHA256 timestamping  
-- 📁 Smart filename handling from `CN=YourCertName`  
-- 🧾 Action logs in CSV for auditing (`SigningActivityLog.csv`)  
-- 🪟 All dialogs focus reliably to avoid lost windows or stuck prompts
-
-## Requirements
-- Windows PowerShell 5.x or later  
-- GUI session (uses Windows Forms)  
-- Internet access (for timestamping)  
-- Administrator rights (for installing to LocalMachine store)
-
-## Getting Started
-
-1. **Run the script** (`PS_CodeSigner.ps1`). Elevated launch recommended.  
-2. Follow the GUI setup:
-   - Select a log directory
-   - Create a script access password  
-3. From the main menu:
-   - Use Mode `4` to generate a certificate (`CN=YourCertName`)  
-   - Use Mode `1` to begin signing scripts — password required  
-4. Signed scripts will be timestamped and logged automatically  
-5. Action results stored in your selected folder as `SigningActivityLog.csv`
-
-## Modes
-
-| Mode | Description                        |
-|------|------------------------------------|
-| 1    | Sign scripts                       |
-| 2    | Reset access password              |
-| 3    | Switch to a different certificate  |
-| 4    | Create new code-signing certificate |
-| 5    | Exit                               |
-
-## Notes & Tips
-- The `.pfx` file contains your **private key** — guard it carefully.  
-- Only `CN=...` portions affect the generated filenames.  
-- If installing to `LocalMachine`, run PowerShell **as Administrator**.  
-- The timestamping service used is [http://timestamp.digicert.com](http://timestamp.digicert.com)  
-- Summary screen allows quick access to logs after signing
-
-## Version History
-
-| Version | Changes |
-|---------|---------|
-| 3.0.1   | Fixed elevation check syntax; improved password matching diagnostics; loop control logic clarified using `$exitMenu`; updated splash screen and GUI elements |
-| 3.0.0   | Major refactor with modular helpers, certificate installation target prompt, password hashing, encrypted settings vault, logging system, and signing summary dialog |
-| 2.3.5   | Fixed folder dialog default path issue. Stable release. |
-| 2.3.4   | Patched error output in signing loop to resolve parser bug |
-| 2.3.3   | Added 5-second splash screen and prompt focus reliability |
-| 2.3.2   | Smart certificate filename logic using CN extraction |
-| 2.3.1   | Elevation detection before system certificate install |
-| 2.3.0   | Core signer logic, password vault, and UI foundation |
-
-## License
-This script is provided for internal or administrative use.  
-You may modify and redistribute it freely with appropriate attribution.  
-
----
-
-_Designed with care to make signing simple, secure, and seamless._
+# Run the script
+.\PSScriptSigner.ps1
